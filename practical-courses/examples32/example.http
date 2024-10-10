@@ -1,0 +1,16 @@
+GET https://www.thi.de HTTP/1.1
+
+###
+
+GET https://de.wikipedia.org/wiki/Wikipedia:Hauptseite HTTP/1.1
+
+###
+
+GET https://online-lectures-cs.thi.de/chat/0f27b780-bc8e-4309-9e76-5e4c0bf9fa34/user/Foo HTTP/1.1
+
+###
+
+POST https://online-lectures-cs.thi.de/chat/0f27b780-bc8e-4309-9e76-5e4c0bf9fa34/login HTTP/1.1
+Content-Type: application/json
+
+{"username": "Tom", "password": "12345678"}

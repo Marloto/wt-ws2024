@@ -1,0 +1,18 @@
+GET https://online-lectures-cs.thi.de/chat/test.txt HTTP/1.1
+Host: online-lectures-cs.thi.de
+
+### 
+
+GET https://online-lectures-cs.thi.de/chat/7bf9c2fa-eb24-47c5-8772-c77293db8225/user/Tom HTTP/1.1
+
+###
+
+POST https://online-lectures-cs.thi.de/chat/7bf9c2fa-eb24-47c5-8772-c77293db8225/login HTTP/1.1
+Content-Type: application/json
+
+{"username": "Tom", "password": "12345678"}
+
+###
+
+GET /resources/test.txt HTTP/1.1
+Host: online-lectures-cs.thi.de
