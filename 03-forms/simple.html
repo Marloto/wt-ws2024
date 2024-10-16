@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- get / post sowie action for das Ziel, an dem der HTTP-Request gehen soll über method und action Attribut -->
+    <!--form--> <!-- Experiment 1, action leer, verlinkt zum selben Dokument -->
+    <!--form action="simple.html"--> <!-- Experiment 2, action auf selbes Dokument -->
+    <!--form action="other.html"--> <!-- Experiment 3, action auf anderes Dokument -->
+    <!--form method="get"--> <!-- Experiment 4, method leer, bzw. get -> ergänzt daten in dem Query-Teil der URL -->
+    <!--form method="post"--> <!-- Experiment 5, method steuer mit post das ein POST-HTTP-Request erzeugt wird -->
+    <form method="post" action="other.html">
+        <label for="vornameFeld">Vorname:</label><br>
+        <input type="text" id="vornameFeld" name="vorname" value="Codie" required><br>
+        <label for="nachnameFeld">Nachname:</label><br>
+        <input type="text" id="nachnameFeld" name="nachname" value="Coder"><br><br>
+
+        <input type="submit" value="Absenden" name="action">
+        <input type="reset" value="Zurücksetzen">
+        <input type="button" value="Other">
+    </form> 
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Personal Information</legend>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"  placeholder="Some Text...">
+            </div>
+            <div>
+                <label for="vorname">Vorname:</label>
+                <input type="text" id="vorname" name="vorname">
+            </div>
+        </fieldset>
+        <div>
+            <label for="stadt">Town:</label>
+            <select name="stadt" id="stadt">
+                <option value="1">Ingolstadt</option>
+                <option>München</option>
+                <option selected>Nürnberg</option>
+            </select>
+        </div>
+        <div>
+            <input type="checkbox" id="checksomething" name="checksomething" value="true" checked>
+            <label for="checksomething">Some Test</label>
+        </div>
+        <div>
+            <input type="radio" id="radiothing" name="radiothing" value="1" >
+            <label for="radiothing">Some Selections</label><br>
+            <input type="radio" id="radiothing" name="radiothing" value="2" checked>
+            <label for="radiothing">Some Selections</label><br>
+        </div>
+        <div>
+            <label for="message"></label>
+            <textarea name="message" id="message" cols="30" rows="10">...
+hallo, welt
+wie geht es...
+            </textarea>
+        </div>
+        <div>
+            <input type="submit" value="Absenden">
+            <a href=".../this.html"><button type="button">Cancel</button></a>
+            <!-- <a href=".../this.html" style="border:1px solid black;padding:5px;color: black;text-decoration:none;background-color: #aaa;">Cancel</a> für ab Aufgabe 2 -->
+        </div>
+    </form>
+</body>
+</html>
