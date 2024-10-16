@@ -1,0 +1,47 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+h1, h2 {
+    color: rgb(31, 80, 139);
+    border-bottom-color: #ccc;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+h1, h2 {
+    margin-top: 40px;
+}
+sup {
+    font-size: 7pt;
+}
+a {
+    color: rgb(141, 46, 20);
+    text-decoration: none;
+}
+
+.source {
+    color: #ccc;
+}
+
+/* Attribute-Selektor verändern, z.B. a[href] */
+[data-foo="xyz"] {
+    /* color: #f00; */
+}
+
+input[type="text"] {
+    background-color: #f00;
+}
+
+[id="foobar"] {
+    /* color: #00f; */
+}
+
+/*lässt sich wieder mit allen elementen kombinieren */
+li.barfoo.foobar#baz[data-foo="xyz"] {
+    color: yellow;
+    padding-left: 50px;
+}
+
+/*Kontext Selektoren*/
+.source > h2 {
+    color: #ccc;
+}

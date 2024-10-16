@@ -1,0 +1,23 @@
+/*Tag-Selektor verändern, z.B. p*/
+p, li {
+    color: red;
+    font-style: italic;
+}
+
+/*ID-Selektor verändern, z.B. #id1*/
+#baz {
+    color: green;
+}
+
+/*Klassen-Selektor verändern, z.B. .class1*/
+.foobar {
+    color: blue;
+}
+
+/*Kombinationen möglich*/
+li.barfoo.foobar#baz {
+    color: yellow;
+    padding-left: 50px;
+}
+
+/*Nachbar-Selektor verändern, z.B. p + p*/
