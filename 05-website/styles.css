@@ -1,0 +1,169 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16pt;
+}
+
+body {
+    margin: 0px;
+}
+
+.nav {
+    color: white;
+    background-color:#333;
+}
+
+.nav a {
+    color: inherit;
+}
+
+.nav ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav ul li, .logo, .nav ul {
+    display: inline-block; /*inline ist ohne breite/höhe, nur für textfluss, inline-block wenn sie width/height und z.B. padding korrekt ergänzen wollen*/
+}
+
+.nav ul {
+    float: right;
+}
+
+.logo, .nav li {
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.nav a {
+    text-decoration: none;
+}
+
+/*pseudoelemente (spezifische od. virtuelle elemente die es zusätzlich gibt, aber nicht direkt ein tag bzw. element sind, ::first-letter) und pseudoklassen (sind spezielle Zustände, abgetrennt mit Doppelpunkt, :nth-child(odd), :nth-child(even), :nth-child(2n), :nth-child(2n+1)) */
+.nav a:hover {
+    color: #ccc;
+}
+
+/* gilt für padding und margin: vier werte sind möglich, fehlt einer, wird dieser von der gegenüberliegenden seite übernommen*/
+
+.container {
+    width: 900px;
+    margin: 0px auto;
+}
+
+.teaser img {
+    width: 100vw;
+    height: 50vh;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+.teaser {
+    border-bottom: 5px solid orange;
+    height: 50vh;
+}
+
+a {
+    color: orange;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.more a::after {
+    content: ">";
+    padding-left: 10px;
+    text-decoration: none;
+}
+.more {
+    text-align: right;
+}
+
+.content {
+    margin-bottom: 80px;
+}
+
+.footer {
+    position: fixed;
+    /*left, right, bottom, top*/
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
+    background-color: #BBB;
+    border-top: 5px solid orange;
+    color: #666;
+}
+.footer a {
+    color: inherit;
+}
+
+/*formulare bündig gestalten*/
+label {
+    width: 20%;
+    text-align: right;
+    display: inline-block;
+    box-sizing: border-box;
+    padding-right: 20px;
+}
+
+input[type="text"], input[type="email"] {
+    width: 80%;
+    box-sizing: border-box;
+    font-size: 1em;
+    margin-bottom: 10px;
+    border: 1px solid #999;
+    padding: 5px 10px;
+}
+input:focus {
+    border-color: orange;
+}
+
+input[type="checkbox"] {
+    margin-left: 20%;
+}
+
+input[type="checkbox"] + label {
+    width: 60%;
+    box-sizing: border-box;
+    padding-left: 10px;
+    text-align: left;
+}
+
+button {
+    width: 80%;
+    margin-left: 20%;
+    margin-top: 20px;
+    border: 0px;
+    background-color: orange;
+    padding: 5px 10px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+
+}
+button:hover {
+    background-color: darkorange;
+}
+
+@media screen and (max-width: 1000px) {
+    /* ... selectoren zzgl. eigenschaften */
+    .container {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0px 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    /* ... selectoren zzgl. eigenschaften */
+    input[type="text"], input[type="email"], label {
+        width: 100%;
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+    input[type="checkbox"] {
+        margin-left: 0px;
+    }
+}
