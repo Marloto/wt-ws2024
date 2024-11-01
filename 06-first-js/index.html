@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // !!! fröhlich los-coden
+        let foo = 42;
+        // in Java System.out.println(foo); in JavaScript console.log(foo);
+        console.log(foo);
+        console.log(typeof foo);
+        foo = "Hallo";
+        console.log(foo);
+        console.log(typeof foo);
+        console.log(1 == 1);
+        console.log(1 == "1");
+        console.log([] == ![]);
+        console.log(![]); // [] == false
+        //...
+        console.log(true == "1");
+        console.log(false == 0);
+
+        if(1 == "1") {
+            console.log("gleich");
+        } else if(2 == "2") {
+            console.log("mehr?!");
+        } else {
+            console.log("ungleich");
+        }
+
+        let i = 0;
+        while(i < 10) {
+            console.log(i);
+            i ++;
+        }
+
+        for(let i = 0; i < 10; i++) {
+            console.log(i);
+        }
+
+        i = 0;
+        do {
+            console.log(i);
+            i++;
+        } while(i < 10);
+
+        let arr = [5, 4, 3, 2, 1];
+        // for(let i = 0; i < arr.length; i++) {
+        //     console.log(arr[i]);
+        // }
+        console.log("---")
+        for(var j in arr) {
+            console.log(j, arr[j]);
+        }
+        for(var j of arr) {
+            console.log(j);
+        }
+
+
+    </script>
+</body>
+</html>

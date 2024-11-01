@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let something = {};
+something.a = 42;
+something.foo = function() {
+  console.log(this.a);
+};
+something.foo();
+console.dir(something);
+
+
+class Person {
+    constructor(name, alter) {
+        this._name = name;
+        this._alter = alter;
+    }
+    get name() { return this._name; }
+    set alter(wert) { this._alter = wert; }
+    toString() {
+        return "name = " + this._name + ", alter = " + this._alter;
+    }
+}
+
+let p = new Person("Ich", 42);
+p.alter = 43;
+console.log(p.name);
+
+console.log(p);
+
+console.log(p.toString());
+
+
+const OtherPerson = function(name, alter) {
+    this._name = name;
+    this._alter = alter;
+};
+let p2 = new OtherPerson("Du", 23);
+OtherPerson.prototype.toString = function() {
+    return "name = " + this._name + ", alter = " + this._alter;
+};
+console.log(p2);
+    </script>
+</body>
+</html>

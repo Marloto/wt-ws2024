@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="maxI">
+    <input id="maxJ">
+    <button onclick="generate();">Generiere</button>
+    <script>
+        // Platzieren Sie die Berechnung in eine Funktion
+        function generateCell(i, j) {
+            document.write("<td>" + i * j + "</td>");
+        }
+        function generateRow(maxJ, i) {
+            document.write("<tr>");
+            for(let j = 1; j <= maxJ; j++) {
+                generateCell(i, j);
+            }
+            document.write("</tr>");
+        }
+        function generateTable(maxI, maxJ) {
+            document.write("<table>");
+            document.write("<tbody>");
+
+            for(let i = 1; i <= maxI; i++) {
+                generateRow(maxJ, i);
+            }
+            document.write("</tbody>");
+            document.write("</table>");
+        }
+        function generate() {
+            //console.log("Hallo, Welt!");
+            let maxI = document.getElementById("maxI");
+            let maxJ = document.getElementById("maxJ");
+            console.log(maxI.value, maxJ.value);
+            generateTable(maxI.value, maxJ.value);
+
+            // Next Step: Inhalte von den Formularen auslesen
+            // irgendwie an die generateTable übergeben
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function add01(a, b) {
+    return a + b;
+}
+
+let add02 = add01;
+
+let add03 = function(a, b) {
+    return a + b;
+};
+
+let add04 = (a, b) => {
+    return a + b;
+};
+let add05 = (a, b) => a + b;
+
+console.log(add01(1, 2));
+console.log(typeof add01);
+console.log(add02(1, 2));
+console.log(add03(1, 2));
+console.log(add04(1, 2));
+console.log(add05(1, 2));
+
+console.log(add01); // <- kein aufruf, nur referenz der funktion
+console.log(add01(5, 2)); // aufruf mit argumenten
+
+function doSomething(handler, a, b) {
+    console.log(handler(a, b));
+}
+
+function sub(a, b) {
+    return a - b;
+}
+
+doSomething(add01, 1, 2);
+doSomething(sub, 1, 2);
+
+// Weiteres Beispiel
+let res = [2, 3, 4].map((el) => el * 2)
+console.log(res);
+    </script>
+</body>
+</html>
