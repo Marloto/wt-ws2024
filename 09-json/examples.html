@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var rect = {"width": 100, "height": 100};
+        var arr = [1, 2, 3, 4];
+        var pos = [
+            {"x": 10, "y": 0}, 
+            {"x": 10, "y": 10}
+        ];
+
+        console.log(rect);
+        console.log(arr);
+        console.log(pos);
+
+        // JSON
+        // - Objekte: {}, Attribute mit Anführungszeichen, Werte mit Doppelpunkt getrennt, mehrere Attribute mit Komma getrennt
+        // - Arrays: [], Werteliste durch Komma getrennt
+        // - Für Attribute od. Arrays sind darüber hinaus: String, Number und Boolean möglich, Null sowie wieder Objekte od. Arrays
+        // - Whitespaces spielen keine Rolle
+        console.log(`{"width": 100, "height": 100}`);
+        // JSON bietet zwei Methoden: JSON.stringify() und JSON.parse()
+        var res = JSON.stringify(rect);
+        console.log(res);
+        console.log(typeof res, res.length);
+        var rect2 = JSON.parse(res);
+        console.log(rect2);
+
+        console.log(JSON.stringify(arr));
+        console.log(JSON.stringify(pos));
+    </script>
+</body>
+</html>
