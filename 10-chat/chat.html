@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT API Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #chatbox {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user {
+            background-color: #eaf5f0;
+            text-align: right;
+        }
+        .bot {
+            background-color: #ebebeb;
+            text-align: left;
+        }
+        p {
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+</head>
+<body>
+    <div id="chatbox">
+        <div id="messages"></div>
+        <input type="text" id="userInput" placeholder="Deine Nachricht eingeben" />
+        <button onclick="sendMessage()">Senden</button>
+    </div>
+
+    <script>
+        const messages = [];
+        async function sendMessage() {
+            const userMessage = document.getElementById('userInput').value;
+            if (!userMessage) return;
+
+            displayMessage(userMessage, 'user');
+
+            const apiKey = localStorage.getItem('apiKey');
+
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-4",
+                    messages: [{ role: "user", content: userMessage }]
+                })
+            });
+
+            const data = await response.json();
+            const botMessage = data.choices[0].message.content;
+            displayMessage(botMessage, 'bot');
+            document.getElementById('userInput').value = '';
+        }
+
+        function displayMessage(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ' + sender;
+            messageDiv.innerHTML = marked.parse(message);
+            document.getElementById('messages').appendChild(messageDiv);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</body>
+</html>

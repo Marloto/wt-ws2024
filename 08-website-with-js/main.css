@@ -225,3 +225,14 @@ a:hover {
         margin-left: 0;
     }
 }
+
+.hide-element {
+    display: none;
+}
+
+.newsletter input.is-valid {
+    border-color: green;
+}
+.newsletter input.is-invalid {
+    border-color: red;
+}
