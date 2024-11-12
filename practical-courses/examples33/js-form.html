@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="my-form" onsubmit=""> <!-- onsubmit="return doSomething();" als Variante 1-->
+        <input name="check">
+        <button type="button" onclick="validate()">Submit</button>
+    </form>
+    <script>
+        const rnd = Math.random();
+        // Generell: submit button erzeugt ein Reload der Webseite (oder Weiterleiten)
+        // alles was in JavaScript bis dahin passiert ist, wird beendet / verfällt
+        // Es sind Maßnahmen zu finden, mit denen die Validierung vor dem Absenden
+        // eingebaut werden, und den Submit verhindern, falls etwas falsch ist
+
+        function doSomething() {
+            // ... pruefung
+            return false;
+        }
+
+        // alternative ohne onsubmit im HTML
+        const form = document.getElementsByTagName('form')[0];
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            console.log("test!", event);
+
+            form.submit();
+        });
+
+
+        // Variante 1:
+        // <button type="button" onclick="validate()">Submit</button>
+        function validate() {
+            // ueberpruefen incl. async call
+            // -> am ende wenn alles richtig form.submit();
+        }
+
+        // Variante 2:
+        // <form onsubmit="doSomething(); return false;">
+        // -> doSomething führt alles durch und nutzt ebenfalls form.submit()
+
+        // Variante 3:
+        // <input name="check" oninput="... valide element ..."> -> speichern Sie das Ergebnis in eine
+        // variable (z.B. usernameChecked)
+        // <form onsubmit="return usernameChecked && passwordChecked && repeatChecked;"> ...
+    </script>
+</body>
+</html>

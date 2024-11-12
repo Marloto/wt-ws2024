@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function handleSomethingResponse(status, response) {
+            if (status == 200) {
+                console.log(response);
+
+                // falls dies ein JSON-String ist, kann man ihn verarbeiten mit JSON.parse
+                // -> [...] ist ein Array
+                // -> {...} ist ein Object
+                // -> [{...}, {...}] ist ein Array von Objekten
+                // -> {"something": [...]} ist ein Object mit einem Attribut das ein Array verwendet
+                const data = JSON.parse(response);
+                console.log(data);
+
+                // element hinzufügen, appendChild
+                // -> woher das element? erstellen: document.createElement('p');
+                // let someElement = document.createElement('p');
+                // console.log(someElement);
+                // someElement.textContent = response;
+                // document.body.appendChild(someElement);
+
+                // Verarbeitung von data?
+                // -> einzelne Array-Elemente verwenden z.B. data[0], data[1], z.B. ausgeben#
+                // console.log(data[0]);
+                for(let i = 0; i < data.length; i ++) { // for ... in / for ... of
+                    // ein Objekt in dem Array: {"msg":"Hello, World!","from":"Tom","time":1731331606313}
+                    const msg = data[i].msg;
+                    const time = data[i].time;
+                    const from = data[i].from;
+                    let someParagraph = document.createElement('p');
+                    someParagraph.textContent = msg + " " + time;
+                    document.body.appendChild(someParagraph);
+
+                    // 1.731.331.781.035 für time entspricht dem Unixtimestamp
+                    // Millisekunden seit 01.01.1970 00:00 
+                    console.dir(new Date(time));
+                }
+
+            } else {
+                console.error("Fehler (" + status + "): "
+                    + response);
+            }
+        }
+        function doSomething() {
+            // objekt erzeugt und mit variable referenziert
+            var xmlhttp = new XMLHttpRequest();
+
+            // Funktion definieren, Zuweisung an ein bestimmtes Attribut
+            xmlhttp.onreadystatechange = function () {
+                console.log("Test!!!" + xmlhttp.readyState); // <- readyState soll 4 sein!
+                if (xmlhttp.readyState == 4) {
+                    handleSomethingResponse(xmlhttp.status, xmlhttp.responseText);
+                }
+            };
+
+            // HTTP-Method (GET, POST, PUT, PATCH, ...), URL für die Seite,
+            // letzter Parameter steuert ob sync od. async, sie sollen async arbeiten
+            // daher einfach true lassen
+            xmlhttp.open("GET", "https://online-lectures-cs.thi.de/chat/test.json", true);
+
+            // Sendet die HTTP-Anfrage ab
+            xmlhttp.send();
+        }
+
+        doSomething();
+    </script>
+</body>
+
+</html>
