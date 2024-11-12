@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="messages">
+        <p>Tom: Lorem ipsum dolor sit amet. <span class="time">12:13:14</span></p>
+    </div>
+
+    <script>
+        const target = document.getElementById("messages");
+        function handleTestResponse(status, response) {
+            if (status == 200) {
+                console.log(response);
+                // falls es JSON ist, muss es immer erst verarbeitet werden!
+                // sie dürfen gerne annehmen, dass es json ist, wenn die schnittstelle dies vor gibt
+                var json = JSON.parse(response);
+                /**
+                 * [{"msg":"Hello, World!","from":"Tom","time":1731319660899},{"msg":"42","from":"Jerry","time":1731406060899}]
+                 * -> [] ist immer ein Array, mit for-schleife od. mittels [...]-Syntax auf Elemente zugreifen
+                 * -> {} ist immer ein Objekt, "."-Operator für den Zugriff auf Eigenschaften / Attribute ... .msg, .time
+                 */
+                console.log(json);
+                for(var i = 0; i < json.length; i++) {
+                    console.log(json[i]);
+                    console.log(json[i].msg, typeof json[i].msg);
+                    console.log(json[i].time, typeof json[i].time);
+                    console.log(json[i].from, typeof json[i].from);
+                    const time = json[i].time; // number
+                    const msg = json[i].msg; // string
+                    const from = json[i].from;// string
+
+                    // Mit DOM-API die Elemente beziehen, auf denen ich arbeiten möchte, haben wir nach oben geschoben
+                    // ggf. neue Elemente erzeugen: document.createElement('...')
+                    const chatElement = document.createElement('p');
+                    const timeElement = document.createElement('span');
+                    timeElement.style.marginLeft = "1em";
+
+                    // befüllen, und CSS-Konfigurieren, hier gab es wichtige Attribute in der DOM-API die an jedem Element (Node) sind
+                    // -> classList für Zugriff auf Class-Attribut
+                    // -> innerHTML, innerText, textContent
+                    chatElement.textContent = msg;
+                    timeElement.textContent = time;
+
+                    // Letzter Schritt appendChild am richtigen "Ziel"
+                    target.appendChild(chatElement); // -> <div id="message"><p>...msg...</p></div>
+                    // nicht optimal: target.appendChild(timeElement); // -> <div id="message"><p>...msg...</p><span>...time...</span></div>
+                    chatElement.appendChild(timeElement); // -> <div id="message"><p>...msg...<span>...time...</span></p></div>
+
+                    // Die Zeit wird im Unix Time Stamp ausgeliefert
+                    // -> das sind die Sekunden seit 01.01.1970 um 00:00:00
+                    // -> in JavaScript mit ms, daher 1.731.320.632.385
+                    const someExampleWithTime = new Date(time);
+                    console.dir(someExampleWithTime);
+                }
+            } else {
+                console.error("Fehler (" + xmlhttp.status + "): "
+                    + response);
+            }
+        }
+
+        function doSomething() {
+            var xmlhttp = new XMLHttpRequest(); // HTTP Request Objekt erstellen
+
+            // Logik zum behandeln, wichtig: Ergebnisse sind in der Zukunft da, nicht direkt!
+            xmlhttp.onreadystatechange = function () {
+                console.log("State: " + xmlhttp.readyState);
+                if (xmlhttp.readyState == 4) { // bedeutet alle informationen hinter der URL wurden geladen
+                    handleTestResponse(xmlhttp.status, xmlhttp.responseText);
+                }
+            };
+            
+            xmlhttp.open("GET", "https://online-lectures-cs.thi.de/chat/test.json", true); // HTTP-Method + URL, letzen parameter auf true lasse (es soll async sein)
+            xmlhttp.send(); // notwendiger letzer call, falls Method = POST kommen hier die Daten hinzu
+        }
+
+        doSomething();
+        doSomething();
+        doSomething();
+        // vgl. sekündliche aktualisierung!
+    </script>
+</body>
+</html>

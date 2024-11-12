@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4) {
+                if (xmlhttp.status == 204) {
+                    console.log("Exists");
+                } else if (xmlhttp.status == 404) {
+                    console.log("Does not exist");
+                }
+            }
+        };
+        xmlhttp.open("GET", "https://online-lectures-cs.thi.de/chat/875c9099-737f-4a97-8cb4-c136c2010409/user/Jerry", true);
+        xmlhttp.send();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="my-form">
+        <input name="check" oninput="" onblur="" onfocus="">
+        <button type="button" onclick="doSomething();">Submit</button>
+    </form>
+
+    <script>
+        // Wichtig für das Register-Form:
+        // -> es spielt eine Rolle wie man das Formular verarbeitet!
+        // -> standard type eines button in einem Form: submit!
+        const rnd = Math.random();
+
+        function doSomething() {
+            for(let i = 0; i < 10; i ++) {
+                console.log(i);
+            }
+
+            // JavaScript den Submit auslösen
+            // -> DOM-API kann man das Form-Element finden, und an diesem speziellen Element gibt es eine "submit"-Method
+            console.dir(document.getElementById('my-form'));
+            document.getElementById('my-form').submit();
+        }
+
+        // Wollen wir absenden, wenn wir daten validieren?! Nein!
+    </script>
+</body>
+</html>
