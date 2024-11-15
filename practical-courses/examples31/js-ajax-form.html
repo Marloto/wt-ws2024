@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <form id="my-form" onsubmit="console.log('submitted')">
+        <input name="check" oninput="checkSomething();" onfocus="" onblur="">
+        <button type="button" onclick="checkForm()">Submit</button>
+    </form>
+    <script>
+        function checkForm() {
+            const inputValue = document.querySelector('input[name="check"]').value;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        console.log("Gleich");
+                    } else {
+                        console.log("Ungleich");
+                        document.querySelector('#my-form').submit();
+                    }
+                }
+            };
+            xmlhttp.open("GET",
+                "https://online-lectures-cs.thi.de/chat/test/abc/" + inputValue, true);
+            xmlhttp.send();
+        }
+    </script>
+</body>
+
+</html>

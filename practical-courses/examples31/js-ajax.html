@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function handleTestLoaded(status, text) {
+            if (status == 200) { // ok für HTTP Status 200
+                console.log(text);
+                const data = JSON.parse(text);
+                console.log(data);
+                // data ist ein Array (vgl. [...])
+                // verarbeiten Sie das Array und erzeugen Sie
+                // paragraphen die Informationen der 
+                // Array-Elemente enthalten
+                for(let i = 0; i < data.length; i ++) {
+                    console.log(data[i]);
+                    const el = document.createElement("p");
+                    el.innerText = data[i].msg + " " + data[i].time;
+                    document.body.appendChild(el);
+
+                    // Die lange Zahl ist ein Datumsformat
+                    // Unix Timestamp in ms 01.01.1970 00:00:00
+                    // kann man mit new Date(time) verarbeiten
+                    console.dir(new Date(data[i].time));
+                    console.log(new Date(data[i].time).toLocaleString());
+                }
+            } else {
+                console.error("Fehler (" + status + "): "
+                    + text);
+            }
+        }
+
+        function loadTest(url) {
+            // Objekt erzeugen von der Klasse XMLHttpRequest
+            var xmlhttp = new XMLHttpRequest();
+    
+            // Weise dem Attribut onreadystatechange einen Wert zu, hier eine Funktion
+            // die Verarbeitung der zukünftigen Antwort muss in die Funktion die dem
+            // onreadystatechange-Attribut zugewiesen wird
+            xmlhttp.onreadystatechange = function () {
+                console.log("Antwort: " + xmlhttp.readyState);
+                if (xmlhttp.readyState == 4) {
+                    handleTestLoaded(xmlhttp.status, 
+                        xmlhttp.responseText);
+                }
+            };
+            
+            // Methodenaufruf mit passenden Argumenten für die Parameter
+            // 1. Parameter: HTTP-Method (hier GET) die als erster Parameter verwendet wird, kann auch POST, DELETE, PUT, PATCH, ...
+            // 2. Parameter: URL von wo wir Daten laden
+            // 3. Parameter: Boolean für "async"
+            xmlhttp.open("GET", url, true);
+            
+            // Methodenaufruf zum Absenden
+            xmlhttp.send();
+    
+            // Die folgenden Zeilen werden weiter ausgeführt, aber das Ergebnis ist noch nicht da!
+            console.log("Irgend etwas danach...");
+        }
+        loadTest("https://online-lectures-cs.thi.de/chat/test.json");
+    </script>
+</body>
+
+</html>
