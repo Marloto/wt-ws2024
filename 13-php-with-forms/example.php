@@ -125,11 +125,11 @@ if (isset($_POST["action"]) && $_POST["action"] == "abgesendet") {
             <fieldset>
                 <legend>Warenkorb</legend>
                 <div>
-                    <input id="prodA" name="prodA" type="checkbox">
+                    <input id="prodA" name="prodA" type="checkbox" <?= $_POST["prodA"] == "on" ? "checked" : ""?>>
                     <label for="prodA">Orangen</label>
                 </div>
                 <div>
-                    <input id="prodB" name="prodB" type="checkbox">
+                    <input id="prodB" name="prodB" type="checkbox" <?= $_POST["prodB"] == "on" ? "checked" : ""?>>
                     <label for="prodB">Milch</label>
                 </div>
             </fieldset>
@@ -139,9 +139,9 @@ if (isset($_POST["action"]) && $_POST["action"] == "abgesendet") {
                     <label for="bezahlung">Bezahlung</label>
                     <select id="bezahlung" name="bezahlung" class="<?= !empty($errorBezahlung) ? "error" : "" ?>">
                         <option value=""></option>
-                        <option value="1">Bar</option>
-                        <option value="2">Rechnung</option>
-                        <option value="3">Nachname</option>
+                        <option value="1" <?= $_POST["bezahlung"] == "1" ? "selected":"" ?>>Bar</option>
+                        <option value="2" <?= $_POST["bezahlung"] == "2" ? "selected":"" ?>>Rechnung</option>
+                        <option value="3" <?= $_POST["bezahlung"] == "3" ? "selected":"" ?>>Nachname</option>
                     </select>
                     <?php if ($errorBezahlung) echo "<p>$errorBezahlung</p>"; ?>
                 </div>
