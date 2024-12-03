@@ -39,6 +39,6 @@ var_dump($finalUser);
 - **Tipp:** In den meisten fällen bietet sich die Verarbeitung der Formulardaten auf der selben Seite an (vgl. `<form action="login.php">` für login.php). Wenn der Login erfolgreich ist, wollen Sie aber das der Nutzer auf die "friends.php" Seite weiter geleitet wird!
   - es gibt einen HTTP-Response-Header der dies steuert, der sogenannte "Location"
   - vgl. "Location: somewhere.php", od. "Location: friends.php"
-  - `header("Location: friends.php");`
+  - in PHP mittels: `header("Location: friends.php");`
   - Weiteres Beispiel: friends.php soll sicherstellen, dass man nur die ansicht bekommt, wenn man angemeldet ist... also `if($service->isAuthentificated()) { header("Location: login.php"); exit(); }` wenn die Methode ergänzt wurde
   - abbrechen der nachfolgenden Ausführung mit `exit();`
