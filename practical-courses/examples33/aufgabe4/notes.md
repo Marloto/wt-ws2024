@@ -5,3 +5,6 @@
 - Suche Sie sich die erweiterte Fehleranzeige
 - Suchen Sie sich die spl_autoload_register-Funktion
 - Lagern Sie die Elemente in eine start.php aus, und nutzen Sie require("start.php") um diese datei zu importieren
+- Konfigurieren Sie den BackendService ebenfalls in start.php
+- Ergänzen Sie eine Klasse User, mit Namespace "Model"
+- Wie in JavaScript JSON-Strings erzeugt?
