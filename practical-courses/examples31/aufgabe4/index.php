@@ -32,4 +32,8 @@ var_dump($user);
 $friends = $service->loadFriends();
 var_dump($friends);
 //$service->friendAccept("Trick");
+
+//if(???) // ist der nutzer angemeldet
+header("Location: login.php");
+exit(); // immmer nach einem header mit Location
 ?>
