@@ -7,3 +7,9 @@
   - Mehr fehlerausgaben mittels ini_set-Aufrufe
   - Autoload von Klassen mittels spl_autoload_register
   - session_start ergänzen
+- BackendService nutzen
+  - Regelt alle Zugriffe auf die Funktionen die hier dokumentiert sind: https://online-lectures-cs.thi.de/chat/full
+  - jede Methode ruft eine HTTP-Funktion des Chat-Backends auf
+  - Erproben Sie die Funktionen, so wie benötigt!
+  - Initialisierung mit: $service = new Utils\BackendService();
+  - Hinweis: Die Full-Docu erzeugt keine Dummy-Daten mehr!
