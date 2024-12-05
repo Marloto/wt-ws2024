@@ -13,3 +13,12 @@
   - Erproben Sie die Funktionen, so wie benötigt!
   - Initialisierung mit: $service = new Utils\BackendService();
   - Hinweis: Die Full-Docu erzeugt keine Dummy-Daten mehr!
+- Fügen Sie die Klasse User und Friend hinzu, beide in den Ordner Model, benennung ist hier wichtig
+- Verwenden Sie die verschiedenen Methoden im BackendService
+- json_encode / json_decode für die Datenübermittlung, wird aber alles im BackendService bereits geregelt
+- Weiterleitungen mit:
+
+```
+header("Location: login.php");
+exit(); // immmer nach einem header mit Location
+```
