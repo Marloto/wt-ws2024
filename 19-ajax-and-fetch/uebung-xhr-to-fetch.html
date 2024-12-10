@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Request Vergleich</title>
+</head>
+<body>
+    <h2>Posts von JSONPlaceholder</h2>
+    <button onclick="loadPostsXHR()">Lade mit XHR</button>
+    <button onclick="loadPostsFetch()">Lade mit Fetch</button>
+    <div id="output"></div>
+
+    <script>
+    // Vorgabe: XMLHttpRequest Implementation
+    function loadPostsXHR() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1');
+
+        xhr.onreadystatechange = function() {
+            if (xhr.status === 200 && xhr.readyState === 4) {
+                const post = JSON.parse(xhr.responseText);
+                document.getElementById('output').innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p>${post.body}</p>
+                `;
+            } else {
+                document.getElementById('output').innerHTML =
+                    'Fehler beim Laden des Posts';
+            }
+        };
+
+        xhr.send();
+    }
+
+    // Aufgabe: Implementieren Sie dieselbe Funktionalität mit der Fetch API
+    function loadPostsFetch() {
+        // TODO: Ihre Implementation hier
+        // - Nutzen Sie fetch()
+        // - Verarbeiten Sie die Response als JSON
+        // - Zeigen Sie title und body im output-Element an
+        // - Behandeln Sie mögliche Fehler
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+    </script>
+</body>
+</html>

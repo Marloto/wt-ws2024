@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #ddd;
+        }
+        button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button:disabled {
+            background-color: #ddd;
+            color: #666;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h2>Button Sequenz</h2>
+    <div>
+        <button id="btn1">Button 1</button>
+        <button id="btn2" disabled>Button 2</button>
+        <button id="btn3" disabled>Button 3</button>
+    </div>
+    <div id="output"></div>
+
+    <script>
+    // Globale Hilfsfunktionen
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+    const btn3 = document.getElementById('btn3');
+
+    const log = (text) => {
+        document.getElementById('output').innerHTML += `<p>${text}</p>`;
+    };
+
+    function activateButton(btn) {
+        btn.classList.add('active');
+        btn.disabled = true;
+        log(`${btn.textContent} geklickt!`);
+    }
+
+    function enableButton(btn) {
+        btn.disabled = false;
+    }
+
+    // Version 1: Callback
+    function setupCallbackVersion() {
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    // Version 2: Promise
+    function waitForClick(btn) {
+        return new Promise(resolve => {
+            enableButton(btn);
+            btn.onclick = () => {
+                activateButton(btn);
+                resolve();
+            };
+        });
+    }
+
+    function setupPromiseVersion() {
+
+
+
+
+
+
+
+
+    }
+
+    // Version 3: Async/Await (verwende ebenfalls waitForClick)
+    async function setupAsyncVersion() {
+
+
+
+
+
+
+
+
+    }
+
+    // Wähle eine Version zum Starten:
+    // setupCallbackVersion();
+    // setupPromiseVersion();
+    setupAsyncVersion();
+    </script>
+</body>
+</html>

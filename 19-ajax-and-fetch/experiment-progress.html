@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .progress-bar {
+            width: 300px;
+            height: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>XMLHttpRequest States</h2>
+    <button onclick="startDownload()">Start Download</button>
+    <div class="progress-bar">
+        <div id="progress" class="progress"></div>
+    </div>
+    <div id="state"></div>
+    <div id="status"></div>
+
+    <script>
+        function startDownload() {
+            const url = 'https://httpbin.org/bytes/10000';
+            const xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                const loaded = xhr.response.length;
+                const state = `ReadyState: ${xhr.readyState}`;
+                document.getElementById('state').textContent = state;
+
+                switch (xhr.readyState) {
+                    case 3: // LOADING
+                        if (xhr.response) {
+                            const total = xhr.getResponseHeader('Content-Length');
+                            console.log(total);
+                            const percentComplete = (loaded / total) * 100.0;
+                            document.getElementById('progress').style.width = percentComplete + '%';
+                            if (total) {
+                                document.getElementById('status').innerHTML +=
+                                    `<div>Geladen: ${Math.round(loaded)}B von ${Math.round(total)}B</div>`;
+                            } else {
+                                document.getElementById('status').innerHTML +=
+                                    `<div>Geladen: ${Math.round(loaded)}B</div>`;
+                            }
+                        }
+                        break;
+                    case 4: // DONE
+                        document.getElementById('status').innerHTML +=
+                            `<div>Geladen: ${Math.round(loaded)}B</div>`;
+                        document.getElementById('progress').style.width = '100%';
+                        if (xhr.status === 200) {
+                            document.getElementById('status').innerHTML += '<div>Download abgeschlossen!</div>';
+                        } else {
+                            document.getElementById('output').innerHTML += `<div>Fehler: ${xhr.status}</div>`;
+                        }
+                        break;
+                }
+            };
+
+            xhr.open('GET', url);
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>
