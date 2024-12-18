@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    	<style>
+        html, body {
+          width: 100%;
+          height: 90%;
+          margin: 0;
+        }
+        path {
+          fill: transparent;
+          stroke: #005A9B;
+        }
+
+	</style>
+	<script>
+        // Initialisieren der Anwendung
+        window.addEventListener('load', _ => {
+          // Finde das SVG
+          var el = document.getElementsByTagName('svg')[0];
+          // Ergänze die Listener für die 
+          // Maus (down, move, up und leave)
+          el.addEventListener('mousedown', startDrag);
+          el.addEventListener('mousemove', drag);
+          el.addEventListener('mouseup', endDrag);
+          el.addEventListener('mouseleave', endDrag);
+          // Hilfsvariabeln
+          var selectedElement, offset;
+          var pt = el.createSVGPoint();
+          // Berechne die aktuelle Mausposition
+          function getMousePosition(evt) {
+            var CTM = el.getScreenCTM();
+            pt.x = evt.clientX; pt.y = evt.clientY;
+            return pt.matrixTransform(el.getScreenCTM().inverse());
+          }
+          // Was wenn die Maus gedrückt wird
+          function startDrag(evt) {
+            // neuen Pfad erzeugen
+            selectedElement = document.createElementNS(
+                'http://www.w3.org/2000/svg', 'path');
+            // neuen Pfad erzeugen
+            el.append(selectedElement);
+            // Position ermitteln und Cursor im Pfad bewegen
+            offset = getMousePosition(evt);
+            selectedElement.setAttributeNS(null, 'd', 
+                'M ' + offset.x + ' ' + offset.y);
+          }
+          // Was wenn die Maus bewegt wird
+          function drag(evt) {
+            if (selectedElement) {
+              evt.preventDefault();
+              var coord = getMousePosition(evt);
+              var d = selectedElement.getAttributeNS(null, 'd');
+              selectedElement.setAttributeNS(null, 'd', d + 
+                ' L ' + coord.x + ' ' + coord.y);
+            }
+          }
+          // Was wenn die Maus losgelassen wird, oder
+          // au0erhalb des SVGs ist
+          function endDrag(evt) {
+            selectedElement = null;
+          }
+        })
+
+	</script>
+    </head>
+    <body>
+        <!-- leeres SVG -->
+    <svg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'>
+    </svg>
+</body>
+    </html>
