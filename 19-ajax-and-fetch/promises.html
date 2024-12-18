@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function first(resolve, reject) {
+            if(Math.random() > 0.5) {
+                resolve("Happy Day!");
+            } else {
+                reject("Something is bad!")
+            }
+        }
+
+        function second(data) {
+            console.log(data);
+        }
+
+        function third(err) {
+            console.error(err);
+        }
+
+
+        // spezielle Klasse zum Thema "Promises"
+        const something = new Promise(first); // Konstruktor erwartet eine Funktion als Argument, diese soll zwei Parameter haben, die wieder funktionen sind
+        // -> rufen sie den 1. parameter auf, wenn etwas erfolgreich war
+        // -> rufen sie den 2. paraemter auf, wenn fehler passieren
+        //Promise.then für positive Ergebnisse, erwartet eine Funktion, die selbst einen Parameter erwartet (i.R. die Daten die erhalten wurden)
+        // -> erlaubt return vom Typ Promise
+        //Promise.catch für Fehler, erwartet eine Funktion, die selbst einen Parameter erwartet (i.R. den Fehler)
+        something.then(second);
+        something.catch(third);
+
+        function doSomething() {
+            return new Promise((resolve, reject) => {
+                if(Math.random() > 0.5) {
+                    resolve("Happy Day!");
+                } else {
+                    reject("Something is bad!")
+                }
+            });
+        }
+        
+        
+        
+        doSomething().then((data) => {
+            console.log(data);
+        }).catch((err) => {
+            console.error(err);
+        }) 
+
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        function alt() {
+            //fetch-API definiert eine Funktion fetch(<url>):<Promise>
+            const prom = fetch("https://online-lectures-cs.thi.de/chat/test.json");
+            prom.then((response) => {
+                return response.json();
+            });
+            prom.then((response) => {
+                console.log(response);
+            });
+            prom.catch((err) => {
+                console.error(err);
+            });
+        }
+
+        async function main() {
+            //fetch-API definiert eine Funktion fetch(<url>):<Promise>
+            try {
+                const response = await fetch("https://online-lectures-cs.thi.de/chat/test.json");
+                const data = await response.json();
+                console.log(data);
+            } catch(err) {
+                console.error(err);
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>

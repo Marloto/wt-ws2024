@@ -14,17 +14,18 @@
         const xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function() {
+            console.log(`ReadyState: ${xhr.readyState}`);
             document.getElementById('state').textContent =
                 `ReadyState: ${xhr.readyState}`;
 
             if (xhr.readyState === 4 && xhr.status === 200) {
                 const data = JSON.parse(xhr.responseText);
                 console.log('Daten geladen:', data.title);
-                document.getElementById("output").textContent = data.title;
+                document.getElementById("output").textContent = data[0].title;
             }
         };
 
-        xhr.open('GET', 'https://jsonplaceholder.typicode.com/todos/1');
+        xhr.open('GET', 'https://jsonplaceholder.typicode.com/todos');
         xhr.send();
     }
     </script>

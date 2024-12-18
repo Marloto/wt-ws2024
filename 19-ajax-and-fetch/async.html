@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function doSomething() {
+            return new Promise((resolve, reject) => {
+                if(Math.random() > 0.5) {
+                    resolve("Happy Day!");
+                } else {
+                    reject("Something is bad!")
+                }
+            });
+        }
+
+        // async: markierung die es erlaubt das await schlüsselwort zu verwenden
+        // await: erlaubt wenn ein promise vorliegt, direkt das ergebnis (vgl. then((data) => ...)) zu verwenden ohne weitere funktions-definitionen!
+        async function main() {
+            try {
+                const result = await doSomething();
+                console.log(result);
+            } catch(err) {
+                console.error(err);
+            }
+        }
+        main();
+    </script>
+</body>
+</html>

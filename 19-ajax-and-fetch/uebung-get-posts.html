@@ -18,21 +18,24 @@
         // - Zeige mindestens title und body des Posts an
         // - Behandle mögliche Fehler
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        const element = document.getElementById("output");
+        const req = new XMLHttpRequest();
+        // alternativ .onreadystatechange
+        req.onload = function() {
+            if(req.status === 200) {
+                const text = req.responseText;
+                const data = JSON.parse(text);
+                console.log(data);
+                element.textContent = `${data.title}: ${data.body}`;
+            } else {
+                element.textContent = `Fehler beim Laden, keine Posts vorhanden`;
+            }
+        };
+        req.onerror = function() {
+            element.textContent = `Fehler beim Kommunizieren`;
+        };
+        req.open("GET", API_URL, true);
+        req.send();
 
 
 

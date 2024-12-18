@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function doSomething(myCallback) { // myCallback sei eine Funktion
+            let req = new XMLHttpRequest();
+            req.onreadystatechange = function () {
+                if (req.readyState == 4 && req.status == 200) {
+                    console.log("a", req.responseText);
+                    myCallback(req.responseText);
+                    return req.responseText; // macht kein sinn, sie rufen die Funktion nie auf, passiert intern, wenn ergebnis da ist
+                }
+            };
+            req.open("GET", "https://online-lectures-cs.thi.de/chat/test.json");
+            req.send();
+            console.log("b", req.responseText);
+            return req.responseText; // undefined!
+        }
+
+        let foo = doSomething(function(responseText) {
+            console.log(responseText);
+        });
+        console.log("c", foo);
+
+        // kein aufruf, z.B. const result = req.onreadystatechange();
+    </script>
+</body>
+
+</html>
