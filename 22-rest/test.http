@@ -1,0 +1,20 @@
+# path prefix variable for rest client
+@base = http://localhost:8181/22-rest/service
+# @base = http://localhost/wt-ws2024/22-rest
+
+GET {{base}}/meme/123 HTTP/1.1
+
+###
+
+GET {{base}}/meme HTTP/1.1
+
+###
+
+POST {{base}}/meme HTTP/1.1
+Content-Type: application/json
+
+{}
+
+###
+
+DELETE {{base}}/meme/123 HTTP/1.1
